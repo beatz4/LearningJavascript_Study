@@ -32,4 +32,8 @@ $(document).ready(function() {
     paper.view.draw();
 
     console.log('main.js loaded');
+    
+    const s = "hello";
+    s.rating = 3;
+    console.log(s.rating);
 });
