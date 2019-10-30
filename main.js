@@ -33,7 +33,14 @@ $(document).ready(function() {
 
     console.log('main.js loaded');
     
+    // TEST
+    const obj = {};
+    obj.color = "yellow";
+    obj["not an identifier"] = 3;
+    obj["not an identifier"];
+    obj["color"];
+
     const s = "hello";
     s.rating = 3;
-    console.log(s.rating);
+    s.rating;
 });
