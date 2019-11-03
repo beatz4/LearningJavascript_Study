@@ -133,8 +133,13 @@
 // console.log(`${b}`);
 // console.log(`${c}`);
 
-const arr = [1, 2, 3, 4, 5];
-let [x, y, ...rest] = arr;
-console.log(`${x}`);
-console.log(`${y}`);
-console.log(`${rest}`);
+// const arr = [1, 2, 3, 4, 5];
+// let [x, y, ...rest] = arr;
+// console.log(`${x}`);
+// console.log(`${y}`);
+// console.log(`${rest}`);
+
+const roomTempC = 21.5;
+let currentTempC = 19.5;
+const message = `The current temperature is ` + `${currentTempC-roomTempC}\u0060C different than room temperature.`;
+const fahrenheit = `The curremt temperature is ${currentTempC * 9/5 + 32}\u00b0F`;
