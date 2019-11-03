@@ -126,9 +126,15 @@
 // console.log(`Number greater than 10 found: ${n}.`);
 // console.log(`${nums.length - i - 1} numbers remain`);
 
-const obj = { b: 2, c: 3, d: 4};
+// const obj = { b: 2, c: 3, d: 4};
 
-const {a, b, c} = obj;
-console.log(`${a}`);
-console.log(`${b}`);
-console.log(`${c}`);
+// const {a, b, c} = obj;
+// console.log(`${a}`);
+// console.log(`${b}`);
+// console.log(`${c}`);
+
+const arr = [1, 2, 3, 4, 5];
+let [x, y, ...rest] = arr;
+console.log(`${x}`);
+console.log(`${y}`);
+console.log(`${rest}`);
