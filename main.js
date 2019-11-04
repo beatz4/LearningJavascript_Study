@@ -179,16 +179,103 @@
 
 // console.log(f());       // "in f: x=undefined"
 
-function getSentence([subject, verb, object]) {
-    return `${subject} ${verb} ${object}`;
-}
+// function getSentence([subject, verb, object]) {
+//     return `${subject} ${verb} ${object}`;
+// }
+
+// // const o = {
+// //     subject: "I",
+// //     verb: "love",
+// //     object: "JavaScript",
+// // };
+
+// const arr = ["I", "love", "JavaScript"];
+
+// console.log(getSentence(arr));
+
+// function addPrefix(prefix, ...words) {
+//     const prefixedWords = [];
+//     for (let i=0; i<words.length; i++) {
+//         prefixedWords[i] = prefix + words[i];
+//     }
+
+//     return prefixedWords;
+// }
+
+// const arr = addPrefix("con", "verse", "vex");
+// console.log(arr);
+
+// function f(a, b = "default", c=3) {
+//     return `${a} - ${b} - ${c}`;
+// }
+
+// f(5, 6, 7);
+// f(5, 6);
+// f(5);
+// f();
 
 // const o = {
-//     subject: "I",
-//     verb: "love",
-//     object: "JavaScript",
+//     name: 'Julie',
+//     greetBackwards: function() {
+//         const self = this;
+//         function getReverseName() {
+//             let nameBackwards = '';
+//             for(let i=self.name.length-1; i>=0; i--) {
+//                 nameBackwards += self.name[i];
+//             }
+
+//             return nameBackwards;
+//         }
+
+//         return `${getReverseName()} si eman ym ,olleH`;
+//     },
+// };
+// console.log(o.greetBackwards());
+
+// const o = {
+//     name: 'Julie',
+//     greetBackwards: function() {
+//         const getReverseName = () => {
+//             let nameBackwards = '';
+//             for(let i=this.name.length-1; i>=0; i--) {
+//                 nameBackwards += this.name[i];
+//             }
+//             return nameBackwards;
+//         }
+
+//         return `${getReverseName()} si eman ym ,olleH`;
+//     },
 // };
 
-const arr = ["I", "love", "JavaScript"];
+// console.log(o.greetBackwards());
 
-console.log(getSentence(arr));
+const bruce = { name: "Bruce" };
+const madeline = {name: "Madeline"};
+
+// 이 함수는 어떤 객체에도 연결되지 않지만 this를 사용합니다.
+function greet() {
+    return `Hello I'm ${this.name}`;
+}
+
+// console.log(greet());
+// console.log(greet.call(bruce));
+// console.log(greet.call(madeline));
+
+function update(birthYear, occupation) {
+    this.birthYear = birthYear;
+    this.occupation = occupation;
+}
+
+// update.call(bruce, 1949, 'singer');
+// console.log(bruce);
+
+// update.apply(bruce, [1955, "actor"]);
+// console.log(bruce);
+
+const arr = [2, 4, -5, 15, 7];
+// console.log(Math.min.apply(null, arr));
+// console.log(Math.max.apply(null, arr));
+
+const updateBruce = update.bind(bruce);
+
+updateBruce(1904, "actor");
