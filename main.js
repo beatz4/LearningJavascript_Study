@@ -139,7 +139,56 @@
 // console.log(`${y}`);
 // console.log(`${rest}`);
 
-const roomTempC = 21.5;
-let currentTempC = 19.5;
-const message = `The current temperature is ` + `${currentTempC-roomTempC}\u0060C different than room temperature.`;
-const fahrenheit = `The curremt temperature is ${currentTempC * 9/5 + 32}\u00b0F`;
+// const roomTempC = 21.5;
+// let currentTempC = 19.5;
+// const message = `The current temperature is ` + `${currentTempC-roomTempC}\u0060C different than room temperature.`;
+// const fahrenheit = `The curremt temperature is ${currentTempC * 9/5 + 32}\u00b0F`;
+
+// function getGreeting() {
+//     return "Hello world";
+// }
+
+// console.log(getGreeting());
+
+// const f = getGreeting;
+// console.log(f());
+
+// const o = {};
+// o.f = getGreeting;
+// console.log("o.f : " + o.f());
+
+// const arr = [1, 2, 3];
+// arr[1] = getGreeting;
+// console.log(arr);
+
+// function f(o) {
+//     o.message = `f 안에서 수정함 (이전 값: '${o.message}')`;
+// }
+
+// let o = {
+//     message: "초기 값"
+// };
+
+// console.log(`f를 호출하기 전: o.message="${o.message}"`);
+// f(o);
+// console.log(`f를 호출한 다음: o.message="${o.message}"`);
+
+// function f(x) {
+//     return `in f: x=${x}`;
+// }
+
+// console.log(f());       // "in f: x=undefined"
+
+function getSentence([subject, verb, object]) {
+    return `${subject} ${verb} ${object}`;
+}
+
+// const o = {
+//     subject: "I",
+//     verb: "love",
+//     object: "JavaScript",
+// };
+
+const arr = ["I", "love", "JavaScript"];
+
+console.log(getSentence(arr));
