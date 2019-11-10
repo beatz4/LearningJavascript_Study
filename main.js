@@ -249,33 +249,34 @@
 
 // console.log(o.greetBackwards());
 
-const bruce = { name: "Bruce" };
-const madeline = {name: "Madeline"};
+// const bruce = { name: "Bruce" };
+// const madeline = {name: "Madeline"};
 
-// 이 함수는 어떤 객체에도 연결되지 않지만 this를 사용합니다.
-function greet() {
-    return `Hello I'm ${this.name}`;
-}
+// // 이 함수는 어떤 객체에도 연결되지 않지만 this를 사용합니다.
+// function greet() {
+//     return `Hello I'm ${this.name}`;
+// }
 
-// console.log(greet());
-// console.log(greet.call(bruce));
-// console.log(greet.call(madeline));
+// // console.log(greet());
+// // console.log(greet.call(bruce));
+// // console.log(greet.call(madeline));
 
-function update(birthYear, occupation) {
-    this.birthYear = birthYear;
-    this.occupation = occupation;
-}
+// function update(birthYear, occupation) {
+//     this.birthYear = birthYear;
+//     this.occupation = occupation;
+// }
 
-// update.call(bruce, 1949, 'singer');
-// console.log(bruce);
+// // update.call(bruce, 1949, 'singer');
+// // console.log(bruce);
 
-// update.apply(bruce, [1955, "actor"]);
-// console.log(bruce);
+// // update.apply(bruce, [1955, "actor"]);
+// // console.log(bruce);
 
-const arr = [2, 4, -5, 15, 7];
-// console.log(Math.min.apply(null, arr));
-// console.log(Math.max.apply(null, arr));
+// const arr = [2, 4, -5, 15, 7];
+// // console.log(Math.min.apply(null, arr));
+// // console.log(Math.max.apply(null, arr));
 
-const updateBruce = update.bind(bruce);
+// const updateBruce = update.bind(bruce);
 
-updateBruce(1904, "actor");
+// updateBruce(1904, "actor");
+
