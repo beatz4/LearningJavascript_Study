@@ -339,12 +339,16 @@
 // })();
 // console.log(message);
 
-const f = (function() {
-    let count = 0;
-    return function() {
-        return `I have been called ${++count} time(s)`;
-    }
-})();
+// const f = (function() {
+//     let count = 0;
+//     return function() {
+//         return `I have been called ${++count} time(s)`;
+//     }
+// })();
 
-console.log(f());
-console.log(f());
+// console.log(f());
+// console.log(f());
+
+x;
+console.log(x);
+var x = 3;
