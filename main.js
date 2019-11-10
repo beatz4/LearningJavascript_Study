@@ -393,23 +393,43 @@
 // arr.sort((a,b) => a.name > b.name);
 // arr.sort((a,b) => a.name[1] < b.name[1]);
 
-class Person {
-    constructor(name) {
-        this.name = name;
-        this.id = Persone.nextId++;
-    }
+// class Person {
+//     constructor(name) {
+//         this.name = name;
+//         this.id = Persone.nextId++;
+//     }
+// }
+
+// Person.nextId = 0;
+// const jamie = new Person("Jamie"),
+//     juliet = new Person("Juliet"),
+//     peter = new Person("Peter"),
+//     jay = new Person("Jay");
+
+// const arr = [jamie, juliet, peter, jay];
+
+// arr.find(p => p.id === juliet.id);
+
+// arr.find(function(p)  {
+//     return p.id === this.id
+// }, juliet);
+
+const cards = [];
+for(let suit of ['H', 'C', 'D', 'S'])
+    for(let value=1; value<=13; value++)
+        cards.push({suit, value});
+
+// console.log(cards.filter(c => c.value === 2));
+// console.log(cards.filter(c => c.value > 10));
+console.log(cards.filter(c => c.value > 10 && c.suit === 'H'))
+
+function cardToString(c) {
+    const suits = { 'H': '\u2665', 'C': '\u2663', 'D': '\u2666', 'S': '\u2660'};
+    const values = {1: 'A', 11: 'J', 12: 'Q', 13:'K'};
+
+    for (let i=2; i<=10; i++) values[i]=i;
+    return values[c.value] + suits[c.suit];
 }
 
-Person.nextId = 0;
-const jamie = new Person("Jamie"),
-    juliet = new Person("Juliet"),
-    peter = new Person("Peter"),
-    jay = new Person("Jay");
-
-const arr = [jamie, juliet, peter, jay];
-
-arr.find(p => p.id === juliet.id);
-
-arr.find(function(p)  {
-    return p.id === this.id
-}, juliet);
+console.log(cards.filter(c => c.value === 2).map(cardToString));
+console.log(cards.filter(c => c.value > 10 && c.suit === 'H').map(cardToString));
