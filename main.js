@@ -348,7 +348,68 @@
 
 // console.log(f());
 // console.log(f());
+// const arr1 = [1, 2, 3];
+// const arr2 = ["one", 2, "three"];
+// const arr3 = [[1, 2, 3], ["one", 2, "three"]];
+// const arr4 = [
+//     {name: "Fred", type: "object", luckyNumber: [5, 7, 13]},
+//     [
+//         {name: "Susan", type:"object"},
+//         {name: "Anthony", typoe:"object"},
+//     ],
+//     function() { return "arrays can  contain functions too"; },
+//     "three",
+// ];
 
-x;
-console.log(x);
-var x = 3;
+// // 배열 요소에 접근하기
+// arr1[0];
+// arr1[1];
+// arr3[2];
+// arr4[1][0];
+
+// // 배열 길이
+// arr1.length;
+// arr4.length;
+// arr4[1].length;
+
+// // 배열 길이 늘리기
+// arr1[4] = 5;
+// arr1;
+// arr1.length;
+
+// // 배열의 현재 길이보다 큰 인덱스에 접근하는 것만으로 배열의 길이가 늘어나지는 않습니다.
+// arr2[10];
+// arr2.length;
+
+// // Arrary 생성자 (거의 사용하지 않습니다.)
+// const arr5 = new Array();
+// const arr6 = new Array(1, 2, 3);
+// const arr7 = new Array(2);
+// const arr8 = new Array("2");
+
+// const arr = [{name: "Suzanne"}, {name: "Jim"}, 
+// {name: "Trevor"}, {name: "Amanda"}];
+// arr.sort();
+// arr.sort((a,b) => a.name > b.name);
+// arr.sort((a,b) => a.name[1] < b.name[1]);
+
+class Person {
+    constructor(name) {
+        this.name = name;
+        this.id = Persone.nextId++;
+    }
+}
+
+Person.nextId = 0;
+const jamie = new Person("Jamie"),
+    juliet = new Person("Juliet"),
+    peter = new Person("Peter"),
+    jay = new Person("Jay");
+
+const arr = [jamie, juliet, peter, jay];
+
+arr.find(p => p.id === juliet.id);
+
+arr.find(function(p)  {
+    return p.id === this.id
+}, juliet);
