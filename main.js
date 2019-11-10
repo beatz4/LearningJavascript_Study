@@ -280,3 +280,71 @@
 
 // updateBruce(1904, "actor");
 
+// let name = "Irena";
+// let age = 25;
+
+// function greet() {
+//     console.log(`Hello, ${name}!`);
+// }
+
+// function getBirthYear() {
+//     return new Date().getFullYear() - age;
+// }
+
+// greet();
+// console.log(getBirthYear());
+
+// {
+//     let x = {color: "blue"};
+//     let y = x;
+//     let z = 3;
+
+//     {
+//         // 내부 블록
+//         let x = 5;
+//         console.log(x);
+//         console.log(y.color);
+//         y.color = "red";
+//         console.log(z);
+//     }
+//     console.log(x.color);
+//     console.log(y.color);
+//     console.log(z);
+// }
+
+// let globalFunc;
+// {
+//     let blockVar = 'a';
+//     globalFunc = function() {
+//         console.log(blockVar);
+//     }
+// }
+// globalFunc();
+
+// let f;
+// {
+//     let o = { note:'Safe' };
+//     f = function() {
+//         return o;
+//     }
+// }
+// let oRef = f();
+// console.log(oRef);
+// oRef.note = "Not so safe after all";
+// console.log(oRef);
+
+// const message = (function() {
+//     const secret = "I'm a secret!";
+//     return `The secret is ${secret.length} charactors long.`;
+// })();
+// console.log(message);
+
+const f = (function() {
+    let count = 0;
+    return function() {
+        return `I have been called ${++count} time(s)`;
+    }
+})();
+
+console.log(f());
+console.log(f());
