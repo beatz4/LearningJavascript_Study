@@ -448,19 +448,31 @@ const Car = function() {
 
     const carProps = new WeakMap();
     class Car {
+
+        static getNextVin() {
+            return Car.nextVin++;
+        }
+
         constructor(make, model) {
             this.make = make;
             this.model = model;
-            this._userGears = ['P', 'N', 'R', 'D'];
-            carProps.set(this, { userGear: this._userGears[0]});
+            this.vin = Car.getNextVin();
+            // this._userGears = ['P', 'N', 'R', 'D'];
+            // carProps.set(this, { userGear: this._userGears[0]});
         }
-        get userGear() { return carProps.get(this).userGear; }
-        set userGear(value) {
-            if(this._userGears.indexOf(value) < 0)
-                throw new Error(`Invalid gear:${value}`);
-            carProps.get(this).userGear = value;
+        static areSimilar(car1, car2) {
+            return car1.make === car2.make && car1.model === car2.model;
         }
-        shift(gear) { this.userGear = gear; }
+        static areSame(car1, car2) {
+            return car1.vin === car2.vin;
+        }
+        // get userGear() { return carProps.get(this).userGear; }
+        // set userGear(value) {
+        //     if(this._userGears.indexOf(value) < 0)
+        //         throw new Error(`Invalid gear:${value}`);
+        //     carProps.get(this).userGear = value;
+        // }
+        // shift(gear) { this.userGear = gear; }
     }
 
     return Car;
@@ -472,16 +484,31 @@ const Car = function() {
 // car2.shift('R');
 // -------------------------------------- 2019/11/19
 
-const car1 = new Car();
-const car2 = new Car();
-console.log(car1.shift === Car.prototype.shift);
-car1.shift('D');
-//car1.shift('d'); error exception
-car1.userGear;
-car1.shift === car2.shift;
+// const car1 = new Car();
+// const car2 = new Car();
+// console.log(car1.shift === Car.prototype.shift);
+// car1.shift('D');
+// //car1.shift('d'); error exception
+// car1.userGear;
+// car1.shift === car2.shift;
 
-car1.shift === function(gear) { this.userGear = gear.toUpperCase(); }
-car1.shift === Car.prototype.shift;
-car1.shift === car2.shift;
-//car1.shift('d'); error exception
-car1.userGear;
+// car1.shift === function(gear) { this.userGear = gear.toUpperCase(); }
+// car1.shift === Car.prototype.shift;
+// car1.shift === car2.shift;
+// //car1.shift('d'); error exception
+// car1.userGear;
+
+Car.nextVin = 0;
+
+const car1 = new Car("Tesla", "S");
+const car2 = new Car("Mazda", "S");
+const car3 = new Car("Mazda", "S");
+
+console.log(car1.vin);
+console.log(car2.vin);
+console.log(car3.vin);
+
+console.log(Car.areSimilar(car1, car2));
+console.log(Car.areSimilar(car2, car3));
+console.log(Car.areSame(car1, car2));
+console.log(Car.areSame(car2, car2));
