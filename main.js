@@ -444,7 +444,6 @@
 //     console.log(`${prop}: ${o[prop]}`);
 // }
 
-
 const Car = function() {
 
     const carProps = new WeakMap();
@@ -467,7 +466,22 @@ const Car = function() {
     return Car;
 }();
 
-const car1 = new Car("Tesla", "Model S");
-const car2 = new Car("Mazda", "3i");
+// const car1 = new Car("Tesla", "Model S");
+// const car2 = new Car("Mazda", "3i");
+// car1.shift('D');
+// car2.shift('R');
+// -------------------------------------- 2019/11/19
+
+const car1 = new Car();
+const car2 = new Car();
+console.log(car1.shift === Car.prototype.shift);
 car1.shift('D');
-car2.shift('R');
+//car1.shift('d'); error exception
+car1.userGear;
+car1.shift === car2.shift;
+
+car1.shift === function(gear) { this.userGear = gear.toUpperCase(); }
+car1.shift === Car.prototype.shift;
+car1.shift === car2.shift;
+//car1.shift('d'); error exception
+car1.userGear;
