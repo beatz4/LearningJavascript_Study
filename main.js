@@ -444,39 +444,39 @@
 //     console.log(`${prop}: ${o[prop]}`);
 // }
 
-const Car = function() {
+// const Car = function() {
 
-    const carProps = new WeakMap();
-    class Car {
+//     const carProps = new WeakMap();
+//     class Car {
 
-        static getNextVin() {
-            return Car.nextVin++;
-        }
+//         static getNextVin() {
+//             return Car.nextVin++;
+//         }
 
-        constructor(make, model) {
-            this.make = make;
-            this.model = model;
-            this.vin = Car.getNextVin();
-            // this._userGears = ['P', 'N', 'R', 'D'];
-            // carProps.set(this, { userGear: this._userGears[0]});
-        }
-        static areSimilar(car1, car2) {
-            return car1.make === car2.make && car1.model === car2.model;
-        }
-        static areSame(car1, car2) {
-            return car1.vin === car2.vin;
-        }
-        // get userGear() { return carProps.get(this).userGear; }
-        // set userGear(value) {
-        //     if(this._userGears.indexOf(value) < 0)
-        //         throw new Error(`Invalid gear:${value}`);
-        //     carProps.get(this).userGear = value;
-        // }
-        // shift(gear) { this.userGear = gear; }
-    }
+//         constructor(make, model) {
+//             this.make = make;
+//             this.model = model;
+//             this.vin = Car.getNextVin();
+//             // this._userGears = ['P', 'N', 'R', 'D'];
+//             // carProps.set(this, { userGear: this._userGears[0]});
+//         }
+//         static areSimilar(car1, car2) {
+//             return car1.make === car2.make && car1.model === car2.model;
+//         }
+//         static areSame(car1, car2) {
+//             return car1.vin === car2.vin;
+//         }
+//         // get userGear() { return carProps.get(this).userGear; }
+//         // set userGear(value) {
+//         //     if(this._userGears.indexOf(value) < 0)
+//         //         throw new Error(`Invalid gear:${value}`);
+//         //     carProps.get(this).userGear = value;
+//         // }
+//         // shift(gear) { this.userGear = gear; }
+//     }
 
-    return Car;
-}();
+//     return Car;
+// }();
 
 // const car1 = new Car("Tesla", "Model S");
 // const car2 = new Car("Mazda", "3i");
@@ -498,17 +498,217 @@ const Car = function() {
 // //car1.shift('d'); error exception
 // car1.userGear;
 
-Car.nextVin = 0;
+// Car.nextVin = 0;
 
-const car1 = new Car("Tesla", "S");
-const car2 = new Car("Mazda", "S");
-const car3 = new Car("Mazda", "S");
+// const car1 = new Car("Tesla", "S");
+// const car2 = new Car("Mazda", "S");
+// const car3 = new Car("Mazda", "S");
 
-console.log(car1.vin);
-console.log(car2.vin);
-console.log(car3.vin);
+// console.log(car1.vin);
+// console.log(car2.vin);
+// console.log(car3.vin);
 
-console.log(Car.areSimilar(car1, car2));
-console.log(Car.areSimilar(car2, car3));
-console.log(Car.areSame(car1, car2));
-console.log(Car.areSame(car2, car2));
+// console.log(Car.areSimilar(car1, car2));
+// console.log(Car.areSimilar(car2, car3));
+// console.log(Car.areSame(car1, car2));
+// console.log(Car.areSame(car2, car2));
+
+class Vehicle {
+    constructor() {
+        this.passenger = [];
+        console.log("Vehicle created");
+    }
+
+    addPassenger(p) {
+        this.passenger.push(p);
+    }
+}
+
+class Car extends Vehicle {
+    constructor() {
+        super();
+        console.log("Car creted");
+    }
+
+    deployAirbags() {
+        console.log("BWOOSH!");
+    }
+
+    toString() {
+        return `${this.make} ${this.model}: ${this.vin}`;
+    }
+}
+
+// const v = new Vehicle();
+// v.addPassenger("Frank");
+// v.addPassenger("Judy");
+// console.log(v.passenger);
+// const c = new Car();
+// c.addPassenger("Alice");
+// c.addPassenger("Cameron");
+// console.log(c.passenger);
+// console.log(v.deployAirbags());     // error
+// console.log(c.deployAirbags());
+
+// class Motorcycle extends Vehicle {}
+// const c = new Car();
+// const m = new Motorcycle();
+// console.log(c instanceof Car);
+// console.log(c instanceof Vehicle);
+// console.log(m instanceof Car);
+// console.log(m instanceof Motorcycle);
+// console.log(m instanceof Vehicle);
+
+// class Super {
+//     constructor() {
+//         this.name = 'Super';
+//         this.isSuper = true;
+//     }
+// }
+
+// // 유효하지만 추천하지 않는 방법, property로 지정하는 방식을 추천
+// // 뇌피셜 : 아래 방법으로 생성할 경우 관리가 어렵고 외부에서 사용하기가 어려움
+// Super.prototype.sneaky = 'not recommended!';
+
+// class Sub extends Super {
+//     constructor() {
+//         super();
+//         this.name = 'Sub';
+//         this.isSub = true;
+//     }
+// }
+
+// const obj = new Sub();
+
+// for(let p in obj) {
+//     console.log(`${p}: ${obj[p]}` + 
+//     (obj.hasOwnProperty(p) ? '' : ' (inherited)'));
+// }
+
+// class InsurancePolicy {}
+// const ADD_POLICY = Symbol();
+// const GET_POLICY = Symbol();
+// const IS_INSURED = Symbol();
+// const _POLICY = Symbole();
+// function makeInsurable(o) {
+//     o[ADD_POLICY] = function(p) { this[_POLICY] = p; }
+//     o[GET_POLICY] = function() { return this[_POLICY]; }
+//     o[IS_INSURED] = function() { return !!this[_POLICY]; }
+
+//     // o.addInsurancePolicy = function(p) { this.InsurancePolicy = p; }
+//     // aogetInsurancePolicy = function() { return this.InsurancePolicy; }
+//     // o.isInsured = function() { return !!this.InsurancePolicy; }
+// }
+
+// // makeInsurable(Car);
+// // const car1 = new Car();
+// // car1.addInsurancePolicy(new InsurancePolicy());
+
+// makeInsurable(Car.prototype);
+// const car1 = new Car();
+// car1.addInsurancePolicy(new InsurancePolicy());
+
+// const u1 = { name: 'Cynthia' };
+// const u2 = { name: 'Jackson' };
+// const u3 = { name: 'Olive' };
+// const u4 = { name: 'James' };
+
+// const userRoles = new Map();
+// userRoles.set(u1, 'User');
+// userRoles.set(u2, 'User');
+// userRoles.set(u3, 'Admin');
+
+// userRoles
+//     .set(u1, 'User')
+//     .set(u2, 'User')
+//     .set(u3, 'Admin');
+
+// const userRoles = new Map([
+//     [u1, 'User'],
+//     [u2, 'User'],
+//     [u3, 'Admin'],
+// ]);
+
+//console.log(userRoles.get(u2));
+
+// console.log(userRoles.has(u1));
+// console.log(userRoles.get(u1));
+// console.log(userRoles.has(u4));
+// console.log(userRoles.get(u4));
+
+// console.log(userRoles.get(u1));
+// userRoles.set(u1, 'Admin');
+// console.log(userRoles.get(u1));
+
+// console.log(userRoles.size);
+
+// for(let u of userRoles.keys())
+//     console.log(u.name);
+
+// for(let r of userRoles.values())
+//     console.log(r)
+
+// for(let ur of userRoles.entries())
+//     console.log(`${ur[0].name}: ${ur[1]}`);
+
+// // 맵도 분해할 수 있습니다.
+// // 분해하면 좀 더 자연스러운 코드가 됩니다.
+// for(let [u,r] of userRoles.entries())
+//     console.log(`${u.name}: ${r}`);
+
+// // entries() 메서드는 맵의 기본 이터레이터입니다.
+// // 위 코드는 다음과 같이 단축해서 쓸 수 있습니다.
+// for(let [u,r] of userRoles)
+//     console.log(`${u.name}: ${r}`);
+
+// userRoles.delete(u2);
+// userRoles.size;
+
+// const SecretHolder = (function() {
+//     const secrets = new WeakMap();
+//     return class {
+//         setSecret(secret) {
+//             secrets.set(this, secret);
+//         }
+//         getSecret() {
+//             return secrets.get(this);
+//         }
+//     }
+// }) ();
+
+// const a = new SecretHolder();
+// const b = new SecretHolder();
+
+// a.setSecret('secret A');
+// b.setSecret('secret B');
+
+// console.log(a.getSecret());
+// console.log(b.getSecret());
+
+// const roles = new Set();
+// roles.add("User");
+// roles.add("Admin");
+
+// console.log(roles.size);
+// roles.add("User");
+// console.log(roles.size);
+
+// console.log(roles.delete("Admin"));
+// console.log(roles);
+// console.log(roles.delete("Admin"));
+
+const naughty = new WeakSet();
+
+const children = [
+    { name: "Suzy" },
+    { name: "Derek" },
+];
+
+naughty.add(children[1]);
+
+for(let child of children) {
+    if(naughty.has(child))
+        console.log(`Coal for ${child.name}!`);
+    else
+        console.log(`Presents for ${child.name}!`);
+}
