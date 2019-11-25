@@ -1,3 +1,5 @@
+//import { doesNotReject } from "assert";
+
 //import { throws } from "assert";
 
 //import { WriteStream } from "fs"
@@ -697,18 +699,89 @@ class Car extends Vehicle {
 // console.log(roles);
 // console.log(roles.delete("Admin"));
 
-const naughty = new WeakSet();
+// const naughty = new WeakSet();
 
-const children = [
-    { name: "Suzy" },
-    { name: "Derek" },
-];
+// const children = [
+//     { name: "Suzy" },
+//     { name: "Derek" },
+// ];
 
-naughty.add(children[1]);
+// naughty.add(children[1]);
 
-for(let child of children) {
-    if(naughty.has(child))
-        console.log(`Coal for ${child.name}!`);
-    else
-        console.log(`Presents for ${child.name}!`);
+// for(let child of children) {
+//     if(naughty.has(child))
+//         console.log(`Coal for ${child.name}!`);
+//     else
+//         console.log(`Presents for ${child.name}!`);
+// }
+
+// 2019/11/25 ---- chapter 11 예외와 에러처리
+
+// const err = new Error('invalid email');
+
+// function validateEmail(email) {
+//     return email.match(/@/) ?
+//         email :
+//         new Error(`invalid email: ${email}`);
+// }
+
+// const email = "jane@doe.com";
+
+// const validatedEmail = validateEmail(email);
+// if(validatedEmail instanceof Error) {
+//     console.log(`Error: ${validatedEmail.message}`);
+// } else {
+//     console.log(`Valid email: ${validatedEmail}`);
+// }
+
+// const email = null;
+
+// try {
+//     const validatedEmail = validateEmail(email);
+//     if(validatedEmail instanceof Error) {
+//         console.log(`Error: ${validatedEmail.message}`);
+//     } else {
+//         console.log(`Valid email: ${validatedEmail}`);
+//     }
+// } catch(err) {
+//     console.log(`Error: ${err.message}`);
+// }
+
+// function billPay(amount, payee, account) {
+//     if(amount > account.balance)
+//         throw new Error("insufficient funds");
+//     account.tranfer(payee, amount);
+// }
+
+function a() {
+    console.log('a: calling b');
+    b();
+    console.log('a: done');
+}
+function b() {
+    console.log('b: calling c');
+    c();
+    console.log('b: done');
+}
+function c() {
+    console.log('c: throwing error');
+    throw new Error('c error');
+    console.log('c: done');
+}
+function d() {
+    console.log('d: calling c');
+    c();
+    console.log('d: done');
+}
+
+try {
+    a();
+} catch(err) {
+    console.log(err.stack);
+}
+
+try {
+    d();
+} catch(err) {
+    console.log(err.stack);
 }
