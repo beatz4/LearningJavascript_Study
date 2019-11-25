@@ -753,35 +753,88 @@ class Car extends Vehicle {
 //     account.tranfer(payee, amount);
 // }
 
-function a() {
-    console.log('a: calling b');
-    b();
-    console.log('a: done');
-}
-function b() {
-    console.log('b: calling c');
-    c();
-    console.log('b: done');
-}
-function c() {
-    console.log('c: throwing error');
-    throw new Error('c error');
-    console.log('c: done');
-}
-function d() {
-    console.log('d: calling c');
-    c();
-    console.log('d: done');
+// function a() {
+//     console.log('a: calling b');
+//     b();
+//     console.log('a: done');
+// }
+// function b() {
+//     console.log('b: calling c');
+//     c();
+//     console.log('b: done');
+// }
+// function c() {
+//     console.log('c: throwing error');
+//     throw new Error('c error');
+//     console.log('c: done');
+// }
+// function d() {
+//     console.log('d: calling c');
+//     c();
+//     console.log('d: done');
+// }
+
+// try {
+//     a();
+// } catch(err) {
+//     console.log(err.stack);
+// }
+
+// try {
+//     d();
+// } catch(err) {
+//     console.log(err.stack);
+// }
+
+// try {
+//     console.log("this line is executed...");
+//     throw new Error("whoops");
+//     console.log("this line is not...");
+// } catch (err) {
+//     console.log("there was an error...");
+// } finally {
+//     console.log("...always executed");
+//     console.log("perform cleanup here");
+// }
+
+const book = [
+    "Twinkle, twinkle, little bat!",
+    "How I wonder what you're at!",
+    "Up above the world you fly",
+    "Like a tea tray in the sky.",
+    "Twinkle, twinkle, little bat!",
+    "How I wonder what you're at!",
+];
+
+const it = book.values();
+
+// console.log(it.next());
+// console.log(it.next());
+// console.log(it.next());
+// console.log(it.next());
+// console.log(it.next());
+// console.log(it.next());
+// console.log(it.next());
+// console.log(it.next());
+// console.log(it.next());
+
+let current = it.next();
+while(!current.done) {
+    console.log(current.value);
+    current = it.next();
 }
 
-try {
-    a();
-} catch(err) {
-    console.log(err.stack);
-}
+const it1 = book.values();
+const it2 = book.values();
 
-try {
-    d();
-} catch(err) {
-    console.log(err.stack);
+it1.next();
+it1.next();
+
+class Log {
+    constructor() {
+        this.messages = [];
+    }
+    add(message) {
+        this.messages.push({message, timestamp: Date.now()});
+    }
 }
