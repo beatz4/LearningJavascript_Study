@@ -515,31 +515,31 @@
 // console.log(Car.areSame(car1, car2));
 // console.log(Car.areSame(car2, car2));
 
-class Vehicle {
-    constructor() {
-        this.passenger = [];
-        console.log("Vehicle created");
-    }
+// class Vehicle {
+//     constructor() {
+//         this.passenger = [];
+//         console.log("Vehicle created");
+//     }
 
-    addPassenger(p) {
-        this.passenger.push(p);
-    }
-}
+//     addPassenger(p) {
+//         this.passenger.push(p);
+//     }
+// }
 
-class Car extends Vehicle {
-    constructor() {
-        super();
-        console.log("Car creted");
-    }
+// class Car extends Vehicle {
+//     constructor() {
+//         super();
+//         console.log("Car creted");
+//     }
 
-    deployAirbags() {
-        console.log("BWOOSH!");
-    }
+//     deployAirbags() {
+//         console.log("BWOOSH!");
+//     }
 
-    toString() {
-        return `${this.make} ${this.model}: ${this.vin}`;
-    }
-}
+//     toString() {
+//         return `${this.make} ${this.model}: ${this.vin}`;
+//     }
+// }
 
 // const v = new Vehicle();
 // v.addPassenger("Frank");
@@ -928,10 +928,73 @@ class Car extends Vehicle {
 // console.log(it.next());
 // console.log(it.next());
 
-function printLeapYearStatus() {
-    const year = new Date().getFullYear();
-    if(year % 4 !== 0) return false;
-    else if(year % 100 != 0) return true;
-    else if(year % 400 != 0) return false;
-    else return true;
-}
+// function printLeapYearStatus() {
+//     const year = new Date().getFullYear();
+//     if(year % 4 !== 0) console.log(`${year} is NOT a leap year`);
+//     else if(year % 100 != 0) console.log(`${year} IS a leap year`);
+//     else if(year % 400 != 0) console.log(`${year} is NOT leap year`);
+//     else console.log(`${year} IS a leap year`);
+// }
+
+// function printLeapYearStatus() {
+//     const year = new Date().getFullYear();
+//     if(year % 4 !== 0) return false;
+//     else if(year % 100 != 0) return true;
+//     else if(year % 400 != 0) return false;
+//     else return true;
+// }
+
+// console.log("Before timeout: " + new Date());
+// function f() {
+//     console.log("After timeout: " + new Date());
+// }
+
+// setTimeout(f, 60*1000); // 1분
+// console.log("I happen after setTimeout");
+// console.log("Me too!");
+
+// const start = new Date();
+// let i = 0;
+// const intervalId = setInterval(function() {
+//     let now = new Date();
+//     if(now.getMinutes() !== start.getMinutes() || ++i>10)
+//         return clearInterval(intervalId);
+//     console.log(`${i}: ${now}`);
+// }, 5*1000);
+
+// function countdown() {
+//     //let i;
+//     console.log("Countdown:");
+//     for(let i=5; i>=0; i--) {
+//         setTimeout(function() {
+//             console.log(i===0 ? "GO!" : i);
+//         }, (5-i)*1000);
+//     }
+// }
+
+// countdown();
+
+// const fs = require('fs');
+
+// const fname = 'may_or_may_not_exist.txt';
+// fs.readFile(fname, function(err, data) {
+//     if(err) return console.error(`error reading file ${fname}: ${err.message}`);
+//     console.log(`${fname} contents: ${data}`);
+// });
+
+const fs = require('fs');
+
+fs.readFile('a.txt', function(err, dataA) {
+    if(err) console.error(err);
+    fs.readFile('b.txt', function(err, dataB) {
+        if(err) console.error(err);
+        fs.readFile('c.txt', function(err, dataC) {
+            if(err) console.error(err);
+            setTimeout(function() {
+                fs.writeFile('d.txt', dataA+dataB+dataC, function(err) {
+                    if(err) console.error(err);
+                });
+            }, 60*1000);
+        });
+    });
+});
