@@ -1134,55 +1134,146 @@ const fs = require('fs');
 //         console.log("Houston, we have a problem: " + err.message);
 //     })
 
-function nfcall(f, ...args) {
-    return new Promise(function(resolve, reject) {
-        f.call(null, ...args, function(err, ...args) {
-            if(err) return reject(err);
-            resolve(args.length<2 ? args[0] : args);
-        });
-    });
-}
+// function nfcall(f, ...args) {
+//     return new Promise(function(resolve, reject) {
+//         f.call(null, ...args, function(err, ...args) {
+//             if(err) return reject(err);
+//             resolve(args.length<2 ? args[0] : args);
+//         });
+//     });
+// }
 
-function ptimeout(delay) {
-    return new Promise(function(resolve, reject) {
-        setTimeout(resolve, reject);
-    });
-}
+// function ptimeout(delay) {
+//     return new Promise(function(resolve, reject) {
+//         setTimeout(resolve, reject);
+//     });
+// }
 
-function grun(g) {
-    const it = g();
-    (function iterate(val) {
-        const x = it.next(val);
-        if(!x.done) {
-            if(x.value instanceof Promise) {
-                x.value.then(iterate).catch(err => it.throw(err));
-            } else {
-                setTimeout(iterate, 0, x.value);
-            }
-        }
-    })();
-}
+// function grun(g) {
+//     const it = g();
+//     (function iterate(val) {
+//         const x = it.next(val);
+//         if(!x.done) {
+//             if(x.value instanceof Promise) {
+//                 x.value.then(iterate).catch(err => it.throw(err));
+//             } else {
+//                 setTimeout(iterate, 0, x.value);
+//             }
+//         }
+//     })();
+// }
 
-function* theFutureIsNow() {
-    let data;
-    try {
-        data = yield Promise.all([
-            nfcall(fs.readFile, 'a.txt'),
-            nfcall(fs.readFile, 'b.txt'),
-            nfcall(fs.readFile, 'c.txt'),
-        ]);
-    } catch(err) {
-        console.error("Unable to read one or more input files: " + err.message);
-        throw err;
-    }
+// function* theFutureIsNow() {
+//     let data;
+//     try {
+//         data = yield Promise.all([
+//             nfcall(fs.readFile, 'a.txt'),
+//             nfcall(fs.readFile, 'b.txt'),
+//             nfcall(fs.readFile, 'c.txt'),
+//         ]);
+//     } catch(err) {
+//         console.error("Unable to read one or more input files: " + err.message);
+//         throw err;
+//     }
 
-    yield ptimeout(60*1000);
-    try {
-        yield nfcall(fs.writeFile, 'd.txt', data[0]+data[1]+data[2]);
-    } catch(err) {
-        console.error("Unable to write outout file: " + err.message);
-        throw err;
-    }
-}
+//     yield ptimeout(60*1000);
+//     try {
+//         yield nfcall(fs.writeFile, 'd.txt', data[0]+data[1]+data[2]);
+//     } catch(err) {
+//         console.error("Unable to write outout file: " + err.message);
+//         throw err;
+//     }
+// }
 
-grun(theFutureIsNow);
+// grun(theFutureIsNow);
+
+// const d = new Date();
+// console.log(d);
+// console.log(d.valueOf());
+
+// <script src="cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.4.0/moment-timezone/min.js"></script>
+const moment = require('moment-timezone');
+// ref: http://momentjs.com/
+// Date ref document: https://goo.gl/DaGfQ
+
+// const d = new Date(Date.UTC(2019, 12, 27));
+
+// Moment.js에 넘기는 배열은 자바스크립트의 Date 생성자에 넘기는 매개변수와 똑같고,
+// 월은 0으로 시작합니다.
+// toDate() 메서드는 Moment.js 객체를 자바스크립트 Date 객체로 변환합니다.
+// const d = moment.tz([2019, 12, 27,9, 19], 'America/Log_Angeles').toDate();
+// const s = moment.tz([2019, 12, 27, 9, 19], 'Asia/Seoul').toDate();
+
+// const before = { d: new Date() };
+
+// console.log(before.d instanceof Date)        // true
+// const json = JSON.stringify(before);
+// const after = JSON.parse(json);
+// console.log(after.d instanceof Date)         // false
+// console.log(typeof after.d)                  // "string"
+
+// after.d = new Date(after.d);
+//  console.log(after.d instanceof Date);
+
+// const before = { d: new Date().valueOf() };
+// console.log(typeof before.d);
+// const json = JSON.stringify(before);
+// const after = JSON.parse(json);
+// console.log(typeof after.d);
+// const d = new Date(after.d);
+
+// const d = new Date(Date.UTC(1930, 4, 10));
+// console.log(d.toLocaleDateString());
+// //console.log(d.toLocaleFormat()); removed - alternative function : toLocaleDateString
+// console.log(d.toLocaleTimeString());
+// console.log(d.toTimeString());
+// console.log(d.toUTCString());
+
+// console.log(moment(d).format("YYYY-MM-DD"));
+// console.log(moment(d).format("YYYY-MM-DD HH:mm"));
+// console.log(moment(d).format("YYYY-MM-DD HH:mm Z"));
+// console.log(moment(d).format("YYYY-MM-DD HH:mm [UTC]Z"));
+// console.log(moment(d).format("YYYY년 MM월 DD일 HH:mm"));
+
+// console.log(moment(d).format("dddd, MMMM [the] Do, YYYY"));
+// console.log(moment(d).format("h:mm a"));
+
+// const d = new Date(Date.UTC(1815, 9, 10));
+
+// console.log(d.getFullYear());
+// console.log(d.getMonth());
+// console.log(d.getDate());
+// console.log(d.getDay());
+// console.log(d.getHours());
+// console.log(d.getMinutes());
+// console.log(d.getSeconds());
+// console.log(d.getMilliseconds());
+
+// console.log(d.getUTCFullYear());
+// console.log(d.getUTCMonth());
+// console.log(d.getUTCDate());
+
+// const dates = [];
+
+// // 랜덤한 날짜를 몇 개 만듭니다.
+// const min = new Date(2017, 0, 1).valueOf();
+// const delta = new Date(2020, 0, 1).valueOf();
+// for(let i=0; i<10; i++)
+//     dates.push(new Date(min + delta*Math.random()));
+
+// // dates 배열은 랜덤으로 만들었으므로 (아마) 뒤죽박죽일 겁니다.
+// // 다음과 같이 역순으로 정렬할 수 있습니다.
+// dates.sort((a, b) => b - a);
+// // 날짜순으로 정렬할 수도 있습니다.
+// dates.sort((a,b) => a - b);
+
+console.log(Math.E);
+
+console.log(Math.PI);
+console.log(Math.LN2);
+console.log(Math.LN10);
+console.log(Math.LOG2E);
+console.log(Math.LOG10E);
+
+console.log(Math.SQRT1_2);
+console.log(Math.SQRT2);

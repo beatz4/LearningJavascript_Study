@@ -4,6 +4,7 @@
   "description": "= Learning JavaScript, 3rd Edition == Chapter 2: JavaScript Development Tools",
   "main": "main.js",
   "dependencies": {
+    "moment-timezone": "^0.5.27",
     "underscore": "^1.9.1"
   },
   "devDependencies": {
