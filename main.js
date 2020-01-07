@@ -1267,13 +1267,82 @@ const moment = require('moment-timezone');
 // // 날짜순으로 정렬할 수도 있습니다.
 // dates.sort((a,b) => a - b);
 
-console.log(Math.E);
+// console.log(Math.E);
 
-console.log(Math.PI);
-console.log(Math.LN2);
-console.log(Math.LN10);
-console.log(Math.LOG2E);
-console.log(Math.LOG10E);
+// console.log(Math.PI);
+// console.log(Math.LN2);
+// console.log(Math.LN10);
+// console.log(Math.LOG2E);
+// console.log(Math.LOG10E);
 
-console.log(Math.SQRT1_2);
-console.log(Math.SQRT2);
+// console.log(Math.SQRT1_2);
+// console.log(Math.SQRT2);
+
+// const input = "As I was going to Saint Ives";
+// console.log(input.startsWith("As"));
+// console.log(input.endsWith("Ives"));
+// console.log(input.startsWith("going", 9));
+// console.log(input.endsWith("going", 14));
+// console.log(input.includes("going"));
+// console.log(input.includes("going", 10));
+// console.log(input.indexOf("going"));
+// console.log(input.indexOf("going", 10));
+// console.log(input.indexOf("nope"));
+
+// const input = "As I was going to Saint Ives";
+// const re = /\w{3,}/ig;  // 3글자 이상인 단어에 모두 일치, 대소문자 구분x
+
+// // 문자열(input)의 메서드를 사용할 때
+// console.log(input.match(re));   // 3글자 이상인 단어s
+// console.log(input.search(re));  // 3글자 이상인 단어의 첫 index
+
+// // 정규식(re)의 메서드를 사용할 때
+// console.log(re.exec(input));        // ["was"] - 1
+// console.log(re.exec(input));        // ["going"] - 2
+// console.log(re.exec(input));        // ["Saint"] - 3
+// console.log(re.exec(input));        // ["Ives"] - 4
+// console.log(re.exec(input));        // null
+// console.log(re.test(input));        // 3글자 이상인 단어가 존재 - true
+// re 대신 /\w{3,}/ig (원본) 사용가능
+
+// const html = 'HTML with <a href="/one">one link</a>, and some JavaScript.' + '<script src="stuff.js">';
+// const match = html.match(/area|a|link|script|source/ig);    // 첫 시도
+// console.log(match);
+
+// const html = '<br> [!CDATA[[<br>]]';
+// const matches = html.match(/<br>/ig);
+
+// const html = `<img alt='A "simple" example.'>` + `<img alt="Don't abuse it!">`;
+// const matches = html.match(/<img alt=(['"]).*\1/g);
+// console.log(matches);
+
+const html = `<a class="foo" href="/foo">Foo</a>\n` +
+             `<A href='/bar' Class="bar">Bar</a>\n` +
+             `<a href="/baz">Baz</a>\n` +
+             `<a onclick=javascript:alert('qux!')" href="/qux">Qux</a>`;
+
+function sanitizeATag(aTag) {
+    // 태그에서 원하는 부분을 뽑아냅니다.
+    const parts = aTag.match(/<a\s+(.*?)>(.*?)<\/a>/i);
+    // parts[1]은 여는 <a> 태그에 들어있는 속성입니다.
+    // parts[2]는 <a>와 </a>사이에 있는 텍스트입니다.
+
+    const attributes = parts[1]
+    // 속성을 분해합니다.
+    .split(/\s+/);
+    return '<a ' + attributes
+    // class, id, href 속성만 필요합니다.
+    .filter(attr => /^(?:class|id|href)[\s=]/i.test(attr))
+    // 스페이스 한 칸으로 구분해서 합칩니다.
+    .join('')
+    // 여는 <a> 태그를 완성합니다.
+    + '>'
+    // 텍스트를 추가합니다.
+    + parts[2]
+    // 마지막으로 태그를 닫습니다.
+    + '</a>';
+}
+
+html.replace(/<a .*?>(.*?)<\/a>/ig, function(m, g1, offset) {
+    console.log(`<a> tag found at ${offset}. contents:${g1}`);
+});
