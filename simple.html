@@ -33,6 +33,12 @@
             <div id="callout2" class="callout fancy">
                 <p>A single HTML element can have multiple classes.</p>
             </div>
+            <button data-action="highlight" data-containing="unique">
+                Highlight paragraphs containing "unique"
+            </button>
+            <button data-action="removeHighlights">
+                Remove highlights
+            </button>
         </div>
     </body>
 </html>
@@ -79,4 +85,10 @@
             p.classList.remove('highlight');
         }
     }
+
+    const highlightActions = document.querySelectorAll('[data-action="highlight"]');
+    highlightActions[0].dataset;
+    // DOMStringMap { containing: "unique", action: "highlight" }
+    highlightActions[0].dataset.containing = "giraffe";
+    highlightActions[0].dataset.caseSensitive = "true";
 </script>
