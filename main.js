@@ -1346,14 +1346,3 @@ const moment = require('moment-timezone');
 // html.replace(/<a .*?>(.*?)<\/a>/ig, function(m, g1, offset) {
 //     console.log(`<a> tag found at ${offset}. contents:${g1}`);
 // });
-
-
-
-function printDOM(node, prefix) {
-    console.log(prefix + node.nodeName);
-    for(let i=0; i<node.childNodes.length; i++) {
-        printDOM(node.childNodes[i], prefix + '\t');
-    }
-}
-
-printDOM(document, '');
