@@ -8,6 +8,18 @@
         <div>
             <button>Click Me!</button>
         </div>
+        <script src="http://code.jquery.com/jquery-2.1.4.min.js">
+            $(document).ready(function() {
+                // 여기 있는 코드는 HTML을 모두 불러오고
+                // DOM이 구성된 다음 실행됩니다.
+            })
+
+            const $paras = $('p');
+            $paras.length;              // 문단의 수
+            typeof $paras;              // "object"
+            $paras instanceof $;        // true
+            $paras instanceof jQuery;   // true
+        </script>
         <script>
             // 이벤트 핸들러를 만들어 반환합니다.
             function logEvent(handlerName, type, cancel, stop, stopImmediate) {
