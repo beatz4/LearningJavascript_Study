@@ -19,6 +19,17 @@
             typeof $paras;              // "object"
             $paras instanceof $;        // true
             $paras instanceof jQuery;   // true
+
+            $('p')
+                .after('<hr>')
+                .append('<sup>*</sup>')
+                .filter(':odd')
+                .css('color', 'red');
+
+            $('p')
+            .before('<hr>')
+            .find('.code')
+            .css('font-size', '30px');
         </script>
         <script>
             // 이벤트 핸들러를 만들어 반환합니다.
