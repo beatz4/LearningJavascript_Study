@@ -1,6 +1,6 @@
-= Learning JavaScript, 3rd Edition
+##### Learning JavaScript, 3rd Edition
 
->>>>> Summary
+### **Summary**
 
-#첫 정독 완료!!!
->>>>> LearningJavaScript Study Practice Source
+## First time, **DONE** study this BOOK
+## [TOY PROJECT](https://github.com/beatz4/ToyProject_1_Blog.git)
