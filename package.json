@@ -9,7 +9,7 @@
     "babel": "^6.23.0",
     "babel-node": "0.0.1-security",
     "moment-timezone": "^0.5.27",
-    "underscore": "^1.9.2",
+    "underscore": "^1.12.1",
     "uuid": "^3.3.3"
   },
   "devDependencies": {
